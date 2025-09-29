@@ -1,17 +1,3 @@
-## 🎯 Final Goal
-
-In this course, the ultimate goal is to build an **AI-powered conversational agent** that can understand and interact with your GitHub repositories.  
-
-Think of it as your personal **AI assistant for documentation and code**:  
-- Ask questions like *“How do I set up this project?”* or *“Where is the deployment script?”*  
-- Get instant answers, with context pulled from the repo’s docs and source files.  
-- Similar to **DeepWiki**, but tailored specifically to your GitHub repo.  
-
-The script you see here is just **Step 1: Ingestion**.  
-Next, we’ll move on to preprocessing, vectorization, and building a retrieval-augmented chatbot.
-
----
-
 # GitHub Repo Markdown Parser
 
 This is a simple Python script that downloads and parses all Markdown (`.md` / `.mdx`) files from any public GitHub repository.  
@@ -20,11 +6,13 @@ It extracts both the **content** and **frontmatter metadata** from the files, wh
 ---
 
 ## ✨ Features
-- Downloads repositories as ZIP archives from GitHub
-- Unzips the repository contents
-- Scans for Markdown files
-- Parses **YAML frontmatter** metadata using [`python-frontmatter`](https://github.com/eyeseast/python-frontmatter)
-- Prints out the number of parsed documents
+- Downloads repositories as ZIP archives from GitHub  
+- Unzips the repository contents  
+- Scans for Markdown files  
+- Parses **YAML frontmatter** metadata using [`python-frontmatter`](https://github.com/eyeseast/python-frontmatter)  
+- Prints out the number of parsed documents  
+- Accepts a **branch name argument** (defaults to `main`)  
+- Script is executable directly from the terminal (`chmod +x main.py`)  
 
 ---
 
@@ -52,6 +40,12 @@ Run the script from the command line:
 uv run main.py <repo_owner> <repo_name> [--branch <branch_name>]
 ```
 
+Or, if you made it executable:
+
+```bash
+./main.py <repo_owner> <repo_name> [--branch <branch_name>]
+```
+
 - `<repo_owner>` → GitHub username or organization  
 - `<repo_name>` → Repository name  
 - `--branch` (optional) → Branch name, defaults to `main`  
@@ -61,13 +55,13 @@ uv run main.py <repo_owner> <repo_name> [--branch <branch_name>]
 Download the [DataTalksClub/faq](https://github.com/DataTalksClub/faq) repository (default branch `main`):
 
 ```bash
-uv run script.py DataTalksClub faq
+uv run main.py DataTalksClub faq
 ```
 
 Download the [DataTalksClub/machine-learning-zoomcamp](https://github.com/DataTalksClub/machine-learning-zoomcamp) repo, specifying the `master` branch:
 
 ```bash
-uv run script.py DataTalksClub machine-learning-zoomcamp --branch master
+uv run main.py DataTalksClub machine-learning-zoomcamp --branch master
 ```
 
 ---
@@ -86,10 +80,24 @@ Internally, each document is stored as a dictionary with:
 
 ---
 
+## 🎯 Final Goal
+
+In this course, the ultimate goal is to build an **AI-powered conversational agent** that can understand and interact with your GitHub repositories.  
+
+Think of it as your personal **AI assistant for documentation and code**:  
+- Ask questions like *“How do I set up this project?”* or *“Where is the deployment script?”*  
+- Get instant answers, with context pulled from the repo’s docs and source files.  
+- Similar to **DeepWiki**, but tailored specifically to your GitHub repo.  
+
+The script you see here is just **Step 1: Ingestion**.  
+Next, we’ll move on to preprocessing, vectorization, and building a retrieval-augmented chatbot.  
+
+---
+
 ## 🧑‍💻 About This Project
 This script is adapted from the **AI Agents Crash Course** by [Alexey Grigorev](https://twitter.com/Al_Grigor).  
 
-🚀 Day 1 of the course focuses on building a data ingestion pipeline that can:
+🚀 Day 1 of the course focuses on building a data ingestion pipeline that can:  
 - ✅ Download repos as zip archives  
 - ✅ Parse frontmatter metadata  
 - ✅ Extract content from Markdown files  
